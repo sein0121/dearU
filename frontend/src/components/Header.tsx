@@ -12,7 +12,6 @@ const Header: React.FC = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "0 20px",
             position: "fixed",
             top: 0,
             left: "50%",
@@ -22,13 +21,13 @@ const Header: React.FC = () => {
         }}>
             {/* 로고 및 텍스트 (클릭 시 홈 이동) */}
             <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-                <img src={logo} alt="dearU Logo" style={{ height: "40px", marginRight: "10px" }} />
+                <img src={logo} alt="dearU Logo" style={{ height: "40px", marginRight: "5px", marginLeft:"5px" }} />
                 <span style={{ fontSize: "20px", fontWeight: "bold", color: "#333" }}>dearU</span>
             </Link>
 
             {/* 알림 아이콘 (클릭 시 `/notifications` 이동) */}
             <Link to="/notifications">
-                <MdOutlineNotifications style={{ fontSize: "28px", color: "#333", cursor: "pointer" }} />
+                <MdOutlineNotifications style={{ fontSize: "28px", color: "#333", cursor: "pointer" , marginRight:"15px"}} />
             </Link>
         </header>
     );
