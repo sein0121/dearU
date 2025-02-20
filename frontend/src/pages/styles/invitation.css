@@ -1,6 +1,79 @@
 .invi-home {
+    display: flex;
+    flex-direction: column; /* ✅ 세로 배치 */
+    align-items: center; /* ✅ 중앙 정렬 */
+    padding: 80px 20px;
+    height: 100%;
+}
+.home-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.preview {
+    width: 300px;
+    height: 60%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #FFF;
     text-align: center;
-    padding: 2rem;
-    height:100%;
-    margin-top:50px;
+}
+
+.invi-settings {
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: #FFF;
+    margin-top: 20px; /* ✅ preview 아래 여백 */
+}
+
+.tab-menu {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab-item {
+    padding: 10px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-item.active {
+    border-bottom: 2px solid #333;
+    font-weight: bold;
+}
+
+.input-section {
+    margin-top: 10px;
+}
+.input-section select {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.input-section label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-section input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-section input[type="color"] {
+    padding: 0;
+    height: 40px;
 }

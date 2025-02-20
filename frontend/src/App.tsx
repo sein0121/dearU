@@ -24,7 +24,7 @@ const App: React.FC = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/my-events" element={<h2>내 초대장</h2>} />
                     <Route path="/login" element={<h2>로그인</h2>} />
-                    <Route path="/special-invitation" element={<Invitation />} />
+                    <Route path="/create-invitation" element={<Invitation />} />
                 </Routes>
 
                 <Navbar />  {/* ✅ Router 내부에서 사용 */}

@@ -21,8 +21,11 @@ const Home: React.FC = () => {
                 </div>
             </div>
             <div className="home-middle">
-                <Link to="/special-invitation">
-                    <img src="/assets/heart2.gif" alt="스페셜 초대장" className="home-gif" />
+                <Link to="/create-invitation" style={{ textDecoration: "none" }}>
+                    <div className="home-middle-card">📧<br /> 초대장 만들기</div>
+                </Link>
+                <Link to="/my-schedule" style={{ textDecoration: "none" }}>
+                    <div className="home-middle-card">📆<br /> 나의 일정</div>
                 </Link>
             </div>
         </div>

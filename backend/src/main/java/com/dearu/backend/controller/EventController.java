@@ -1,6 +1,6 @@
 package com.dearu.backend.controller;
 
-import com.dearu.backend.entity.Event;
+import com.dearu.backend.model.Event;
 import com.dearu.backend.repository.EventRepository;
 import org.springframework.web.bind.annotation.*;
 

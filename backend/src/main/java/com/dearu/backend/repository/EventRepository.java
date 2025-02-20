@@ -1,6 +1,6 @@
 package com.dearu.backend.repository;
 
-import com.dearu.backend.entity.Event;
+import com.dearu.backend.model.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

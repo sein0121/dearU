@@ -1,4 +1,4 @@
-package com.dearu.backend.entity;
+package com.dearu.backend.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
