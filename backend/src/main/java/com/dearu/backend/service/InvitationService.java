@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 
 import java.lang.reflect.Field;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,13 +28,16 @@ public class InvitationService {
         String title = invitation.getClsf();
         Clsf clsf_title = clsfRepository.findByTitle(title);
         if(clsf_title != null) {
-            String clsfCode = clsf_title.getCode();
+            String clsfCode = clsf_title.getCode() ;
             invitation.setClsf(clsfCode);
 //            System.out.println("✅ 가져온 clsf code: " + clsfCode);
         }
         else {
-            throw new IllegalArgumentException("해당 초대장 종류가 존재하지 않습니다.");
+            String clsfNullCode = "" ;
+            invitation.setClsf(clsfNullCode);
+//            throw new IllegalArgumentException("해당 초대장 종류가 존재하지 않습니다.");
         }
+
 
         return invitationRepository.save(invitation);
     }
@@ -47,7 +52,24 @@ public class InvitationService {
                 Field field = ReflectionUtils.findField(Invitation.class, key);
                 if (field != null) {
                     field.setAccessible(true);
-                    ReflectionUtils.setField(field, invitation, value);
+
+                    // ✅ schedule 필드인 경우 LocalDateTime으로 변환
+                    if (key.equals("schedule") && value instanceof String) {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+                        LocalDateTime dateTimeValue = LocalDateTime.parse((String) value, formatter);
+                        ReflectionUtils.setField(field, invitation, dateTimeValue);
+                    } else if (key.equals("clsf")&& value instanceof String) {
+                        String title = (String) value;
+                        Clsf clsf_title = clsfRepository.findByTitle(title);
+                        if (clsf_title != null) {
+                            String clsfCode = clsf_title.getCode() ;
+                            invitation.setClsf(clsfCode);
+                        }else {
+                            invitation.setClsf("" ) ;
+                        }
+                    } else {
+                        ReflectionUtils.setField(field, invitation, value);
+                    }
                 }
             });
 

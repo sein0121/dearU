@@ -4,11 +4,6 @@ import "../pages/styles/home.css";
 import {Link} from "react-router-dom";
 
 const Home: React.FC = () => {
-    const [events, setEvents] = useState<{ title: string; description: string }[]>([]);
-
-    useEffect(() => {
-        getEvents().then((data) => setEvents(data));
-    }, []);
 
     return (
         <div className="home" style={{ height:"100%" }}>

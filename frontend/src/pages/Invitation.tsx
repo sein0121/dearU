@@ -5,7 +5,7 @@ import {getClsfTitles, saveInvitation, updateInvitation} from "../services/api";
 const Invitation: React.FC = () => {
     const [clsfTitles, setClsfTitles] = useState<{ title: string; code: number }[]>([]);
     const [selectedType, setSelectedType] = useState("");
-    const [selectedTab, setSelectedTab] = useState("제목");
+    const [selectedTab, setSelectedTab] = useState("기본");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [bgColor, setBgColor] = useState("#FFFFFF");
@@ -22,20 +22,31 @@ const Invitation: React.FC = () => {
     };
 
     const handleSave = async (field: string) => {
+        // 각 필드별 업데이트 내용 설정
         let updates = {};
 
         switch (field) {
             case "기본":
-                updates = { title, clsf: selectedType , description};
+                updates = {
+                    title,
+                    clsf: selectedType,
+                    description
+                };
                 break;
             case "배경색":
-                updates = { settings: JSON.stringify({ background: bgColor }) };
+                updates = {
+                    settings: JSON.stringify({ background: bgColor })
+                };
                 break;
             case "일정":
-                updates = { schedule: dateTime };
+                updates = {
+                    schedule: dateTime
+                };
                 break;
             case "위치":
-                updates = { location };
+                updates = {
+                    location
+                };
                 break;
             default:
                 break;
@@ -43,9 +54,11 @@ const Invitation: React.FC = () => {
 
         try {
             if (invitationId) {
+                // ✅ 업데이트 로직
                 await updateInvitation(invitationId, updates);
-                alert("저장 완료! 초대장이 업데이트되었습니다.");
+                alert("업데이트 완료!");
             } else {
+                // ✅ 최초 저장 로직
                 const newInvitation = await saveInvitation({
                     title,
                     clsf: selectedType,
@@ -55,10 +68,10 @@ const Invitation: React.FC = () => {
                     pictureId: "",
                     createdBy: "admin",
                     participantIds: "",
-                    description:""
+                    description
                 });
                 setInvitationId(newInvitation.id);
-                alert("저장 완료! 초대장이 새로 저장되었습니다.");
+                alert("저장 완료!");
             }
         } catch (error) {
             alert("저장 중 오류가 발생했습니다.");

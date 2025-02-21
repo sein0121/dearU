@@ -27,7 +27,8 @@ export const saveInvitation = async (invitationData: any) => {
         const response = await axios.post(`${API_BASE_URL}/invitations/save`, invitationData, {
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
+            withCredentials: true  // ✅ CORS 문제 해결
         });
         return response.data;
     } catch (error) {
@@ -39,7 +40,12 @@ export const saveInvitation = async (invitationData: any) => {
 
 export const updateInvitation = async (id: string, updates: any) => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/update/${id}`, updates);
+        const response = await axios.put(`${API_BASE_URL}/invitations/update/${id}`, updates, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            withCredentials: true  // ✅ CORS 문제 해결
+        });
         return response.data;
     } catch (error) {
         console.error("Error updating invitation:", error);
