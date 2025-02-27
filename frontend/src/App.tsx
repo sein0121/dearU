@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Invitation from "./pages/Invitation";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const App: React.FC = () => {
     return (
@@ -23,8 +25,11 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/my-events" element={<h2>내 초대장</h2>} />
-                    <Route path="/login" element={<h2>로그인</h2>} />
                     <Route path="/create-invitation" element={<Invitation />} />
+
+                    {/* ✅ 로그인 & 회원가입 추가 */}
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
 
                 <Navbar />  {/* ✅ Router 내부에서 사용 */}

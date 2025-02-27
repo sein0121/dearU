@@ -77,3 +77,23 @@
     padding: 0;
     height: 40px;
 }
+
+.save-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.save-button {
+    background-color: #FFCC00;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.save-button:hover {
+    background-color: #FFB700;
+}
+

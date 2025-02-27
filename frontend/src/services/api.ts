@@ -52,3 +52,35 @@ export const updateInvitation = async (id: string, updates: any) => {
         throw error;
     }
 };
+
+// 회원가입
+export const registerUser = async (userData: { username: string; password: string }) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/users/register`, userData, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            withCredentials: true
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error registering user:", error);
+        throw error;
+    }
+};
+
+// 로그인
+export const loginUser = async (userData: { username: string; password: string }) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/users/login`, userData, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            withCredentials: true
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error logging in:", error);
+        throw error;
+    }
+};

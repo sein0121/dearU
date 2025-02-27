@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "../pages/styles/invitation.css";
-import {getClsfTitles, saveInvitation, updateInvitation} from "../services/api";
+import { getClsfTitles, saveInvitation, updateInvitation } from "../services/api";
 
 const Invitation: React.FC = () => {
     const [clsfTitles, setClsfTitles] = useState<{ title: string; code: number }[]>([]);
@@ -21,36 +21,16 @@ const Invitation: React.FC = () => {
         setSelectedTab(tab);
     };
 
-    const handleSave = async (field: string) => {
-        // 각 필드별 업데이트 내용 설정
-        let updates = {};
-
-        switch (field) {
-            case "기본":
-                updates = {
-                    title,
-                    clsf: selectedType,
-                    description
-                };
-                break;
-            case "배경색":
-                updates = {
-                    settings: JSON.stringify({ background: bgColor })
-                };
-                break;
-            case "일정":
-                updates = {
-                    schedule: dateTime
-                };
-                break;
-            case "위치":
-                updates = {
-                    location
-                };
-                break;
-            default:
-                break;
-        }
+    // ✅ 한 번에 모든 필드를 저장
+    const handleSave = async () => {
+        const updates = {
+            title,
+            clsf: selectedType,
+            description,
+            settings: JSON.stringify({ background: bgColor }),
+            schedule: dateTime,
+            location
+        };
 
         try {
             if (invitationId) {
@@ -132,7 +112,6 @@ const Invitation: React.FC = () => {
                                 onChange={(e) => setDescription(e.target.value)}
                                 placeholder="설명을 입력하세요"
                             />
-                            <button onClick={() => handleSave("기본")}>저장</button>
                         </div>
                     )}
                     {selectedTab === "배경색" && (
@@ -143,7 +122,6 @@ const Invitation: React.FC = () => {
                                 value={bgColor}
                                 onChange={(e) => setBgColor(e.target.value)}
                             />
-                            <button onClick={() => handleSave("배경색")}>저장</button>
                         </div>
                     )}
                     {selectedTab === "일정" && (
@@ -154,7 +132,6 @@ const Invitation: React.FC = () => {
                                 value={dateTime}
                                 onChange={(e) => setDateTime(e.target.value)}
                             />
-                            <button onClick={() => handleSave("일정")}>저장</button>
                         </div>
                     )}
                     {selectedTab === "위치" && (
@@ -166,10 +143,14 @@ const Invitation: React.FC = () => {
                                 onChange={(e) => setLocation(e.target.value)}
                                 placeholder="예: 서울시 강남구"
                             />
-                            <button onClick={() => handleSave("위치")}>저장</button>
                         </div>
                     )}
                 </div>
+            </div>
+
+            {/* 공통 저장 버튼  */}
+            <div className="save-button-container">
+                <button className="save-button" onClick={handleSave}>저장</button>
             </div>
         </div>
     );
