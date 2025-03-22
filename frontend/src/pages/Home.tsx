@@ -16,12 +16,21 @@ const Home: React.FC = () => {
                 </div>
             </div>
             <div className="home-middle">
-                <Link to="/create-invitation" style={{ textDecoration: "none" }}>
-                    <div className="home-middle-card">📧<br /> 초대장 만들기</div>
-                </Link>
-                <Link to="/my-schedule" style={{ textDecoration: "none" }}>
-                    <div className="home-middle-card">📆<br /> 나의 일정</div>
-                </Link>
+                <div className="home-middle-col">
+                    <Link to="/create-invitation" className="home-link">
+                        <div className="home-middle-card">📧<br /> 초대장 만들기</div>
+                    </Link>
+                    <Link to ="/my-events" className="home-link">
+                        <div className="home-middle-card">나의 초대장</div>
+                    </Link>
+
+                </div>
+                <div className="home-middle-col">
+                    <Link to="/my-schedule" className="home-link">
+                        <div className="home-middle-card">📆<br /> 나의 일정</div>
+                    </Link>
+                </div>
+
             </div>
         </div>
     );

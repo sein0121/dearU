@@ -5,10 +5,10 @@ import com.dearu.backend.repository.EventRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/events")
-@CrossOrigin(origins = "*")  // React 연결 허용
+
 public class EventController {
     private final EventRepository eventRepository;
 

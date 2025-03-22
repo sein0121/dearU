@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Invitation from "./pages/Invitation";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import MyInviList from "./pages/MyInviList";
+
 
 const App: React.FC = () => {
     return (
@@ -24,7 +26,7 @@ const App: React.FC = () => {
 
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/my-events" element={<h2>내 초대장</h2>} />
+                    <Route path="/my-events" element={<MyInviList />} />
                     <Route path="/create-invitation" element={<Invitation />} />
 
                     {/* ✅ 로그인 & 회원가입 추가 */}

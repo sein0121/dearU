@@ -51,6 +51,7 @@ const Invitation: React.FC = () => {
                     description
                 });
                 setInvitationId(newInvitation.id);
+
                 alert("저장 완료!");
             }
         } catch (error) {

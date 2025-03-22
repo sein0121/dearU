@@ -1,4 +1,6 @@
 import axios from "axios";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 const API_BASE_URL = "http://localhost:8080/api";
 
@@ -83,4 +85,16 @@ export const loginUser = async (userData: { username: string; password: string }
         console.error("Error logging in:", error);
         throw error;
     }
+};
+
+// 초대장 목록 전체 조회
+export const getInvitationAll = async () =>{
+  try{
+      const response = await axios.get(`${API_BASE_URL}/invitations`);
+      return response.data;
+
+  } catch (e) {
+      console.error("Error logging in: ", error);
+      throw error;
+  }
 };
