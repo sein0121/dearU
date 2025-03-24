@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,6 +23,10 @@ public class InvitationService {
     private InvitationRepository invitationRepository;
     @Autowired
     private ClsfRepository clsfRepository;
+
+    public List<Invitation> getAllInvitations(){
+        return invitationRepository.findAllByOrderByScheduleDesc();
+    }
 
     public Invitation saveInvitation(Invitation invitation) {
 
