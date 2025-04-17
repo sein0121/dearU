@@ -33,8 +33,9 @@ public class InvitationService {
         String title = invitation.getClsf();
         Clsf clsf_title = clsfRepository.findByTitle(title);
         if(clsf_title != null) {
-            String clsfCode = clsf_title.getCode() ;
-            invitation.setClsf(clsfCode);
+//            String clsfCode = clsf_title.getCode() ;
+//            invitation.setClsf(clsfCode);
+            invitation.setClsf(clsf_title.getCode());
 //            System.out.println("✅ 가져온 clsf code: " + clsfCode);
         }
         else {
@@ -82,6 +83,10 @@ public class InvitationService {
         } else {
             throw new RuntimeException("Invitation not found");
         }
+    }
+
+    public void deleteInvitation(String id) {
+        invitationRepository.deleteById(id);
     }
 
 }

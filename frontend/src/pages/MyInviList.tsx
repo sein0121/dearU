@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../pages/styles/myinviList.css";
-import { getInvitationAll, getClsfTitles } from "../services/api";
+import { getInvitationAll, getClsfTitles, deleteInvitation } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface Invitation {
     id: string;
@@ -58,7 +59,9 @@ const MyInviList: React.FC = () => {
                 item.title.toLowerCase().includes(searchText.toLowerCase())
             );
         } else if (searchType === "종류" && searchText) {
-            result = invitations.filter(item => item.clsf === searchText);
+            const matchedClsf = clsfTitles.find(item => item.title === searchText);
+            const matchedCode = matchedClsf?.code || "";
+            result = invitations.filter(item => item.clsf === matchedCode);
         }
 
         setFilteredInvitations(result);
@@ -91,6 +94,29 @@ const MyInviList: React.FC = () => {
     // 페이지 번호 목록
     const totalPages = Math.ceil(filteredInvitations.length / itemsPerPage);
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    //삭제 핸들러 추가
+    const handleDelete= async (id: string)=>{
+        if(window.confirm("정말 삭제하시겠습니까?")){
+            try{
+                await deleteInvitation(id);
+                const updatedList = invitations.filter(inv => inv.id !==id);
+                setInvitations(updatedList);
+                setFilteredInvitations(updatedList);
+                alert("삭제되었습니다.");
+            }catch (e) {
+                alert("삭제에 실패했습니다.");
+                console.error(e);
+            }
+        }
+    }
+
+    //수정 핸들러
+    const navigate = useNavigate();
+
+    // const handleEdit = (id:string)=>{
+    //     navigate(`/invitation?id=${id}`);
+    // }
 
     return (
         <div className="list-home" style={{ height: "100%" }}>
@@ -140,7 +166,13 @@ const MyInviList: React.FC = () => {
             <div className="list-middle">
                 {currentInvitations.map((item) => (
                     <div key={item.id} className="invitation-card">
-                        <div className="invitation-detail-title">{item.title}</div>
+                        <div className="invitation-card-header">
+                            <div className="invitation-detail-title">{item.title}</div>
+                            <div className="invitation-detail-button">
+                                <button className="edit-button" onClick={()=> navigate(`/invitation?id=${item.id}`)}>수정</button>
+                                <button className="delete-button" onClick={()=> handleDelete(item.id)}>삭제</button>
+                            </div>
+                        </div>
                         <div className="invitation-detail-detail">{formatDate(item.schedule)}</div>
                         <div className="invitation-detail-detail">{item.location}</div>
                         <div className="invitation-detail-detail">{item.description}</div>

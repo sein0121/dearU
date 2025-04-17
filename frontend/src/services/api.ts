@@ -98,3 +98,15 @@ export const getInvitationAll = async () =>{
       throw error;
   }
 };
+
+//초대장 삭제
+export const deleteInvitation = async (id:string)=>{
+    const response = await axios.delete(`${API_BASE_URL}/invitations/${id}`);
+    return response.data;
+};
+
+//초대장 수정
+export const getInvitationById = async (id:string)=>{
+    const response= await axios.get(`${API_BASE_URL}/invitations/${id}`);
+    return response.data;
+}

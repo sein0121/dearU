@@ -1,8 +1,10 @@
 package com.dearu.backend.controller;
 
 import com.dearu.backend.model.Invitation;
+import com.dearu.backend.repository.InvitationRepository;
 import com.dearu.backend.service.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +17,19 @@ public class InvitationController {
 
     @Autowired
     private InvitationService invitationService;
+    @Autowired
+    private InvitationRepository invitationRepository;
 
     @GetMapping
     public List<Invitation> getAllInvitations() {
         return invitationService.getAllInvitations();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Invitation> getInvitationById(@PathVariable String id) {
+        return invitationRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/save")
@@ -30,6 +41,12 @@ public class InvitationController {
     @PutMapping("/update/{id}")
     public Invitation updateInvitation(@PathVariable String id, @RequestBody Map<String, Object> updates) {
         return invitationService.updateInvitation(id, updates);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteInvitation(@PathVariable String id) {
+        invitationService.deleteInvitation(id);
+        return ResponseEntity.ok().build();
     }
 
 }

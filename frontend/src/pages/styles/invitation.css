@@ -84,7 +84,7 @@
 }
 
 .save-button {
-    background-color: #FFCC00;
+    background-color: rgb(255, 247, 223);
     color: #333;
     border: none;
     padding: 10px 20px;
@@ -94,6 +94,34 @@
 }
 
 .save-button:hover {
-    background-color: #FFB700;
+    background-color: rgb(253, 244, 198);
 }
+
+.datetime-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.datetime-row input,
+.datetime-row select {
+    padding: 0.4rem;
+    width: 80px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.error-input {
+    border: 2px solid red;
+}
+
+.error-message {
+    color: red;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+
+
 

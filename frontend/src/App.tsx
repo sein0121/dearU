@@ -27,7 +27,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/my-events" element={<MyInviList />} />
-                    <Route path="/create-invitation" element={<Invitation />} />
+                    <Route path="/invitation" element={<Invitation />} />
 
                     {/* ✅ 로그인 & 회원가입 추가 */}
                     <Route path="/login" element={<Login />} />

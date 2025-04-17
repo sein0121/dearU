@@ -17,7 +17,7 @@ const Home: React.FC = () => {
             </div>
             <div className="home-middle">
                 <div className="home-middle-col">
-                    <Link to="/create-invitation" className="home-link">
+                    <Link to="/invitation" className="home-link">
                         <div className="home-middle-card">📧<br /> 초대장 만들기</div>
                     </Link>
                     <Link to ="/my-events" className="home-link">
